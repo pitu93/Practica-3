@@ -78,7 +78,7 @@ describe("Clase GameBoard", function(){
 	Game = oldGame;
     }); 
 
-    it("GameBoard.add", function(){
+    it("add", function(){
 	
 	var tablero=new GameBoard();
 	spyOn(tablero, "add").andCallThrough();
@@ -92,7 +92,7 @@ describe("Clase GameBoard", function(){
 
     });
 
-    it("GameBoard remove", function(){
+    it("remove", function(){
 
 	var tablero=new GameBoard();
 	spyOn(tablero, "remove").andCallThrough();
@@ -107,6 +107,55 @@ describe("Clase GameBoard", function(){
 
 	expect(tablero.remove).toHaveBeenCalled();
 	expect(tablero.objects.length).toEqual(0);
+    });
+
+    it("iterate", function(){
+		
+	/*var tablero=new GameBoard();
+	spyOn(tablero, "remove").andCallThrough();
+	var objeto={};
+	tablero.add(objeto);
+	tablero.add(objeto);
+
+	expect(tablero.objects.length).toEqual(2);
+	tablero.iterate(tablero.add());
+	expect(tablero.objects.length).toEqual(4);*/
+
+    });
+
+    it("draw", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "draw").andCallThrough();
+	var objeto={};
+	tablero.draw(objeto);
+
+	expect(tablero.draw).toHaveBeenCalledWith({});
+
+    });
+
+    it("overlap", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "overlap").andCallThrough();
+	var o1={x:0,w:3,y:1,h:3};
+	var o2={x:2,w:4,y:1,h:4};
+
+	expect(tablero.overlap(o1,o2)).toBeTruthy();
+
+    });
+
+    it("collide", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "collide").andCallThrough();
+	var o1={x:0,w:3,y:1,h:3};
+	var o2={x:2,w:4,y:1,h:4};
+
+	tablero.add(o1);
+
+	expect(tablero.collide(o2)).toBe(o1);
+
     });
 });
 
