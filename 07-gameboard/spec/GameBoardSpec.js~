@@ -97,7 +97,7 @@ describe("Clase GameBoard", function(){
 	var tablero=new GameBoard();
 	spyOn(tablero, "remove").andCallThrough();
 	var objeto={};
-	
+	t
 	tablero.add(objeto);
 	expect(tablero.objects.length).toEqual(1);
 
