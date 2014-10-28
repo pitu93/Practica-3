@@ -111,15 +111,33 @@ describe("Clase GameBoard", function(){
 
     it("iterate", function(){
 		
-	/*var tablero=new GameBoard();
-	spyOn(tablero, "remove").andCallThrough();
+	var tablero=new GameBoard();
+	spyOn(tablero, "iterate").andCallThrough();
+	
+	var objeto ={foo : function(){tablero.add(this)}};
+	tablero.add(objeto);
+	
+	
+	tablero.iterate("foo");
+
+	expect(tablero.iterate).toHaveBeenCalled();
+	expect(tablero.objects.length).toEqual(2);
+
+    });
+
+    it("detect", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "detect").andCallThrough();
+
 	var objeto={};
 	tablero.add(objeto);
-	tablero.add(objeto);
+	
+	function verdad(object){return true};
+	tablero.detect(verdad);
 
-	expect(tablero.objects.length).toEqual(2);
-	tablero.iterate(tablero.add());
-	expect(tablero.objects.length).toEqual(4);*/
+
+	expect(tablero.detect(verdad)).toBe(objeto);
 
     });
 

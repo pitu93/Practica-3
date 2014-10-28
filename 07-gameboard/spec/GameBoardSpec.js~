@@ -111,15 +111,51 @@ describe("Clase GameBoard", function(){
 
     it("iterate", function(){
 		
-	/*var tablero=new GameBoard();
-	spyOn(tablero, "remove").andCallThrough();
+	var tablero=new GameBoard();
+	spyOn(tablero, "iterate").andCallThrough();
+	
+	var objeto ={foo : function(){tablero.add(this)}};
+	tablero.add(objeto);
+	
+	
+	tablero.iterate("foo");
+
+	expect(tablero.iterate).toHaveBeenCalled();
+	expect(tablero.objects.length).toEqual(2);
+
+    });
+
+    it("detect", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "detect").andCallThrough();
+
 	var objeto={};
 	tablero.add(objeto);
-	tablero.add(objeto);
+	
+	function verdad(object){return true};
+	tablero.detect(verdad);
 
-	expect(tablero.objects.length).toEqual(2);
-	tablero.iterate(tablero.add());
-	expect(tablero.objects.length).toEqual(4);*/
+
+	expect(tablero.detect(verdad)).toBe(objeto);
+
+    });
+
+    it("step", function(){
+		
+	var tablero=new GameBoard();
+	spyOn(tablero, "step").andCallThrough();
+	spyOn(tablero, "finalizeRemoved").andCallThrough();
+
+	var objeto={};
+	function verdad(object){return true};
+
+	tablero.add(objeto);
+	
+	tablero.step('verdad');
+
+
+	expect(tablero.finalizeRemoved()).toHaveBeenCalled();
 
     });
 
@@ -152,7 +188,9 @@ describe("Clase GameBoard", function(){
 	var o1={x:0,w:3,y:1,h:3};
 	var o2={x:2,w:4,y:1,h:4};
 
-	expect(tablero.overlap(o1,o2)).toBeTruthy();
+	tablero.add(o1);
+
+	expect(tablero.collide(o2)).toBe(o1);
 
     });
 });
