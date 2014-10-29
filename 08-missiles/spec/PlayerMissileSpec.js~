@@ -63,6 +63,8 @@ describe("Clase PlayerMissile", function(){
     it("Pulsado Missile", function(){
 	
 	var misil=new PlayerShip();
+	//var aux=new PlayerMissile();
+	//spyOn(aux, "").andCallThrough();
 
 	Game = {keys: {'fire': true}};
  	misil.step(1); 
@@ -71,7 +73,11 @@ describe("Clase PlayerMissile", function(){
 	Game = {keys: {'fire': false}};
  	misil.step(1); 
 	expect(misil.reload).toBe(-1.75);
-	//No entra al último if si no ha habido un true antes por lo que no se crean misiles, esto hace que el reload no sea 0.25. La próxima ve que se entrase con true si entraría y se crearían
+	//
+	/*expect(misil.estado).toBeFalsy();
+	Game = {keys: {'fire': false}};
+ 	misil.step(); 
+	expect(misil.estado).toBeFalsy();*/
 	
 
     });
